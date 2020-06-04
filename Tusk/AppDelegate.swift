@@ -11,23 +11,15 @@ import SwiftUI
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    var window: NSWindow!
-
+    var statusItem:NSStatusItem = NSStatusItem()
+    var itemWidth:CGFloat = CGFloat(integerLiteral: 22)
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
-
-        // Create the window and set the content view. 
-        window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-            backing: .buffered, defer: false)
-        window.center()
-        window.setFrameAutosaveName("Main Window")
-        window.contentView = NSHostingView(rootView: contentView)
-        window.makeKeyAndOrderFront(nil)
+//      status item automatically creates button
+        self.statusItem = NSStatusBar.system.statusItem(withLength: itemWidth)
+        
+//      set button image
+        self.statusItem.button?.image = NSImage(named:"Headphones")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -36,4 +28,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
 }
-
